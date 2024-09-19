@@ -2,33 +2,43 @@
 --------------------- KEYMAPS ---------------------
 ---------------------------------------------------
 
-local keymaps = vim.keymap
+local keymap = vim.keymap
 local opts = {
   noremap = true,
   silent = true,
 }
 
+-- Increment/decrement
+keymap.set("n", "+", "<C-a>")
+keymap.set("n", "-", "<C-x>")
+
 -- Select all
-keymaps.set("n", "<C-a>", "gg<S-v>G")
+keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Save File
-keymaps.set("n", "<C-s>", ":w<Return>")
+keymap.set("n", "<C-s>", ":w<Return>")
 
 -- Close current buffer
-keymaps.set("n", "<C-w>", ":bd<Return>:bn<Return>", opts)
+keymap.set("n", "<C-w>", ":bd<Return>:bn<Return>", opts)
 
 -- Save File with Notification
-keymaps.set("n", "<C-s>", function()
+keymap.set("n", "<C-s>", function()
   vim.cmd("w")
   vim.notify("Súbor bol úspešne uložený. ✔", vim.log.levels.INFO, { title = "Uloženie" })
 end, { desc = "Uložiť súbor a zobraziť notifikáciu" })
 
--- umplist
-keymaps.set("n", "<C-m>", "<C-i>", opts)
+-- Umplist
+keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- Split window
-keymaps.set("n", "ss", ":split<Return>", opts)
-keymaps.set("n", "sv", ":vsplit<Return>", opts)
+keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sv", ":vsplit<Return>", opts)
+
+-- Quick rename word under the cursor
+keymap.set("n", "<leader>rt", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>]])
+
+-- Quick comment
+-- gc (by default)
 
 ---------------------------------------------------
 -------------------- NEOSCROLL --------------------
@@ -46,19 +56,19 @@ neoscroll.setup({
 
 local dap = require("dap")
 
-keymaps.set("n", "<F6>", dap.continue)
-keymaps.set("n", "<F9>", dap.step_over)
-keymaps.set("n", "<F8>", dap.step_into)
-keymaps.set("n", "<F7>", dap.step_out)
-keymaps.set("n", "<Leader>b", dap.toggle_breakpoint)
-keymaps.set("n", "<Leader>B", function()
+keymap.set("n", "<F6>", dap.continue)
+keymap.set("n", "<F9>", dap.step_over)
+keymap.set("n", "<F9>", dap.step_into)
+keymap.set("n", "<F7>", dap.step_out)
+keymap.set("n", "<Leader>b", dap.toggle_breakpoint)
+keymap.set("n", "<Leader>B", function()
   dap.set_breakpoint(vim.fn.input("Podmienka breakpointu: "))
 end)
-keymaps.set("n", "<Leader>lp", function()
+keymap.set("n", "<Leader>lp", function()
   dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end)
-keymaps.set("n", "<Leader>dr", dap.repl.open)
-keymaps.set("n", "<Leader>dl", dap.run_last)
+keymap.set("n", "<Leader>dr", dap.repl.open)
+keymap.set("n", "<Leader>dl", dap.run_last)
 
 ---------------------------------------------------
 --------------------- HARPOON ---------------------
@@ -68,7 +78,7 @@ keymaps.set("n", "<Leader>dl", dap.run_last)
 local ui = require("harpoon.ui")
 
 -- Pridanie aktuálneho súboru do Harpoon (klávesová skratka s "a")
-keymaps.set("n", "<leader>a", function()
+keymap.set("n", "<leader>a", function()
   require("harpoon.mark").add_file()
   local bufname = vim.fn.expand("%:t")
   vim.notify(
@@ -79,39 +89,47 @@ keymaps.set("n", "<leader>a", function()
 end, { desc = "Harpoon úspešné pridanie bufferu." })
 
 -- Otvorenie Harpoon menu
-keymaps.set("n", "<leader>g", ui.toggle_quick_menu, { desc = "Zobraziť Harpoon menu" })
+keymap.set("n", "<leader>g", ui.toggle_quick_menu, { desc = "Zobraziť Harpoon menu" })
 
 -- Rýchle prepínanie medzi 4 hlavnými súbormi pomocou <leader>h, <leader>j, <leader>k, <leader>l
-keymaps.set("n", "<leader>h", function()
+keymap.set("n", "<leader>h", function()
   require("harpoon.ui").nav_file(1)
 end, { desc = "Prejsť na súbor 1" })
 
-keymaps.set("n", "<leader>j", function()
+keymap.set("n", "<leader>j", function()
   require("harpoon.ui").nav_file(2)
 end, { desc = "Prejsť na súbor 2" })
 
-keymaps.set("n", "<leader>k", function()
+keymap.set("n", "<leader>k", function()
   require("harpoon.ui").nav_file(3)
 end, { desc = "Prejsť na súbor 3" })
 
-keymaps.set("n", "<leader>l", function()
+keymap.set("n", "<leader>l", function()
   require("harpoon.ui").nav_file(4)
 end, { desc = "Prejsť na súbor 4" })
+
+keymap.set("n", "<leader>ô", function()
+  require("harpoon.ui").nav_file(5)
+end, { desc = "Prejsť na súbor 5" })
+
+keymap.set("n", "<leader>§", function()
+  require("harpoon.ui").nav_file(6)
+end, { desc = "Prejsť na súbor 6" })
 
 ---------------------------------------------------
 ----------------------- LSP -----------------------
 ---------------------------------------------------
 
 -- Mapovanie pre formátovanie kódu
-keymaps.set("n", "<A-f>", vim.lsp.buf.format, { desc = "Formátovať kód" })
+keymap.set("n", "<A-f>", vim.lsp.buf.format, { desc = "Formátovať kód" })
 
 -- Mapovanie pre prechod na definíciu
-keymaps.set("n", "gd", vim.lsp.buf.definition, { desc = "Prejsť na definíciu" })
+keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Prejsť na definíciu" })
 
 -- Importujte Telescope
 local telescope_builtin = require("telescope.builtin")
 -- Nastavenie key-bindu 'su' v normálnom režime pre funkciu 'Show Usages' pomocou Telescope
-keymaps.set("n", "su", telescope_builtin.lsp_references, { desc = "Show Usages" })
+keymap.set("n", "su", telescope_builtin.lsp_references, { desc = "Show Usages" })
 
 -- Create a global terminal for all languages
 local Terminal = require("toggleterm.terminal").Terminal
@@ -135,14 +153,35 @@ function RunCurrentFile()
 end
 
 -- Keybinding to toggle the terminal with <leader>t
-keymaps.set("n", "<leader>t", function()
+keymap.set("n", "<leader>t", function()
   global_terminal:toggle()
 end, { noremap = true, silent = true, desc = "Toggle terminal" })
 
-keymaps.set("n", "<leader>r", function()
+keymap.set("n", "<leader>r", function()
   RunCurrentFile()
 end, { noremap = true, silent = true, desc = "Run current file" })
 
+function AttachDartLS()
+  local lspconfig = require("lspconfig")
+  local dart_client = nil
+
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    if client.name == "dartls" then
+      dart_client = client
+      break
+    end
+  end
+
+  if dart_client then
+    vim.lsp.buf_attach_client(0, dart_client.id)
+    print("dartls attached to buffer")
+  else
+    print("dartls client not found")
+  end
+end
+
+-- Vytvor mapovanie, napríklad na <leader>ld
+vim.api.nvim_set_keymap("n", "<leader>ld", ":lua AttachDartLS()<CR>", { noremap = true, silent = true })
 ---------------------------------------------------
 ---------------------- Python ---------------------
 ---------------------------------------------------

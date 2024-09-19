@@ -5,7 +5,7 @@ return {
       "rcarriga/nvim-dap-ui",
       "mfussenegger/nvim-dap-python",
       "theHamsta/nvim-dap-virtual-text",
-      "nvim-neotest/nvim-nio", -- Pridaná závislosť
+      "nvim-neotest/nvim-nio",
     },
     config = function()
       -- Nastavenie nvim-dap
