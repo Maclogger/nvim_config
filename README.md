@@ -1,4 +1,17 @@
-# 💤 LazyVim
+# 🖥️ Maclogger's NeoVIM Configuration - LazyVIM 🖥️
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+Moja skromná LazyVIM konfigurácia.
+
+## 🚀 **Nakonfigurované jazyky** 🚀
+- Python
+- Java
+- Lua
+
+WIP:
+- SQL
+- Dart (Flutter Development)
+- HTML, CSS, PHP, JS, TS, Laravel Development
+- Github Actions
+- C#
+- C++
+- C
