@@ -1,8 +1,26 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
+# Dočasné a záložné súbory
+*.swap
+*.swo
+*.tmp
+*.bak
+
+# Pluginy a závislosti
+# Ak používaš packer.nvim
+lua/site/pack/*/start/*
+!lua/site/pack/*/start/packer.nvim
+
+# Ak používaš vim-plug
+plugged/
+
+# Cache a log súbory
 *.log
-data
+cache/
+log/
+
+# OS-špecifické súbory
+.DS_Store
+Thumbs.db
+
+# Osobné nastavenia alebo citlivé údaje
+# Príklad: tajné kľúče alebo tokeny
+# secrets.lua
