@@ -71,6 +71,14 @@ keymap.set("n", "<Leader>dr", dap.repl.open)
 keymap.set("n", "<Leader>dl", dap.run_last)
 
 ---------------------------------------------------
+---------------------- C# DAP ---------------------
+---------------------------------------------------
+
+keymap.set("n", "<F5>", function()
+  require("csharp").debug_project()
+end)
+
+---------------------------------------------------
 --------------------- HARPOON ---------------------
 ---------------------------------------------------
 
@@ -123,11 +131,19 @@ end, { desc = "Prejsť na súbor 6" })
 -- Mapovanie pre formátovanie kódu
 keymap.set("n", "<A-f>", vim.lsp.buf.format, { desc = "Formátovať kód" })
 
+--
 -- Mapovanie pre prechod na definíciu
 keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Prejsť na definíciu" })
 
 -- Importujte Telescope
 local telescope_builtin = require("telescope.builtin")
+
+-- Nastavenie zobrazenie chýb na sd
+keymap.set("n", "sd", telescope_builtin.diagnostics, { desc = "Zobraziť diagnostiky" })
+
+keymap.set("n", "úd", vim.diagnostic.goto_prev, { desc = "Predchádzajúca diagnostika" })
+keymap.set("n", "äd", vim.diagnostic.goto_next, { desc = "Nasledujúca diagnostika" })
+
 -- Nastavenie key-bindu 'su' v normálnom režime pre funkciu 'Show Usages' pomocou Telescope
 keymap.set("n", "su", telescope_builtin.lsp_references, { desc = "Show Usages" })
 
@@ -216,6 +232,15 @@ function JavaSetup(file_path)
     .. " && rm -r "
     .. tmp_dir
 end
+
+---------------------------------------------------
+--------------------- NEOGEN ----------------------
+---------------------------------------------------
+
+-- Funkcia na vygenerovanie dokumentácie
+keymap.set("n", "<leader>d", function()
+  require("neogen").generate()
+end)
 
 ---------------------------------------------------
 ----------------------- END -----------------------
