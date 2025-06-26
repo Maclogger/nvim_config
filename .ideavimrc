@@ -19,7 +19,7 @@ set incsearch
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
-
+let g:highlightedyank_highlight_duration = 120
 
 " Increment/decrement
 " ----------------------------------------
