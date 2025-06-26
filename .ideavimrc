@@ -1,0 +1,93 @@
+" ----------------------------------------
+" Leader KEY
+" ----------------------------------------
+
+let mapleader = " "
+
+" ----------------------------------------
+" Relatívne čísla riadkov
+" ----------------------------------------
+
+" Zobraziť absolútne číslo aktuálneho riadku a relatívne čísla pre ostatné
+set number
+set relativenumber
+" Používanie systémového clipboard-u
+set clipboard=unnamedplus
+
+" ----------------------------------------
+" Increment/decrement
+" ----------------------------------------
+
+" Map '+' na inkrementáciu
+nnoremap + <C-a>
+
+" Map '-' na dekrementáciu
+nnoremap - <C-x>
+
+" ----------------------------------------
+
+" ----------------------------------------
+nmap <C-a> gg<S-v>G
+
+" ----------------------------------------
+" Save File
+" ----------------------------------------
+
+nmap <C-s> :w<CR>
+
+
+" ----------------------------------------
+" Save File with Notification
+" ----------------------------------------
+
+nnoremap <C-s> :w<CR>
+
+" ----------------------------------------
+" Split window
+" ----------------------------------------
+
+nmap sv :vsplit<CR>
+nmap sh :split<CR>
+
+" ----------------------------------------
+" Harpoon keybindings
+" ----------------------------------------
+
+" nmap <leader>a :action SetHarpoon1<cr>
+" nmap <leader><C-t> :action SetHarpoon2<cr>
+" nmap <leader><C-n> :action SetHarpoon3<cr>
+" nmap <leader><C-s> :action SetHarpoon4<cr>
+
+nmap <leader>h :action GotoHarpoon1<cr>
+nmap <leader>j :action GotoHarpoon2<cr>
+nmap <leader>k :action GotoHarpoon3<cr>
+nmap <leader>l :action GotoHarpoon4<cr>
+
+nmap <leader>a :action AddToHarpoon<cr>
+nmap <leader>g :action ShowHarpoon<cr><esc>
+
+" ----------------------------------------
+" Zoom In and Zoom Out
+" ----------------------------------------
+
+nmap <C-+> :action EditorTextIncreaseFontSize<CR>
+nmap <C--> :action EditorTextDecreaseFontSize<CR>
+
+nmap <C-h> :action GotoNextSplitter<CR>
+nmap <C-j> :action GotoSplitterDown<CR>
+nmap <C-k> :action GotoSplitterUp<CR>
+nmap <C-l> :action GotoPrevSplitter<CR>
+
+nmap <leader>ff :action com.mituuz.fuzzier.Fuzzier<CR>
+
+nmap <S-h> :tabprevious<CR>
+nmap <S-l> :tabnext<CR>
+nmap <S-j> :<CR>
+
+nmap úd :action GotoPreviousError<CR>
+nmap äd :action GotoNextError<CR>
+nmap sd :action ActivateProblemsViewToolWindow<CR>
+" ----------------------------------------
+" END
+" ----------------------------------------
+
