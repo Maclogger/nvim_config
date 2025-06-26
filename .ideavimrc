@@ -17,6 +17,10 @@ set visualbell
 set scrolloff=5
 set incsearch
 
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+
+
 " Increment/decrement
 " ----------------------------------------
 
