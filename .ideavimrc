@@ -13,6 +13,9 @@ set number
 set relativenumber
 " Používanie systémového clipboard-u
 set clipboard=unnamedplus
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+
 
 " ----------------------------------------
 " Increment/decrement
