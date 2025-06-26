@@ -14,7 +14,7 @@ set relativenumber
 " Používanie systémového clipboard-u
 set clipboard=unnamedplus
 set visualbell
-set scrolloff=5
+set scrolloff=4
 set incsearch
 
 Plug 'machakann/vim-highlightedyank'
